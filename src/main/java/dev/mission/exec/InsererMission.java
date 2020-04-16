@@ -30,9 +30,16 @@ public class InsererMission implements Runnable {
 
 		Mission mission2 = new Mission();
 		mission2.setLibelle("Mission 2");
-		mission2.setTauxJournalier(new BigDecimal("50.90"));
-		mission2.setDateDebut(LocalDate.of(2019, 1, 2));
-		mission2.setDateFin(LocalDate.of(2019, 3, 5));
+		mission2.setTauxJournalier(new BigDecimal("150.90"));
+		mission2.setDateDebut(LocalDate.of(2020, 6, 2));
+		mission2.setDateFin(LocalDate.of(2020, 6, 5));
 		this.missionRepository.save(mission2);
+
+		Mission mission3 = new Mission();
+		mission3.setLibelle("Mission 3");
+		mission3.setTauxJournalier(new BigDecimal("100.90"));
+		mission3.setDateDebut(LocalDate.of(2020, 4, 16));
+		mission3.setDateFin(LocalDate.of(2020, 4, 18));
+		this.missionRepository.save(mission3);
 	}
 }

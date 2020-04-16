@@ -114,4 +114,10 @@ public class Mission {
 		this.tauxJournalier = tauxJournalier;
 	}
 
+	@Override
+	public String toString() {
+		return this.libelle + " Date de debut : " + this.dateDebut + " Date de fin : " + this.dateFin
+				+ " Taux journalier : " + this.tauxJournalier;
+	}
+
 }

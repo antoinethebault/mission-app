@@ -1,5 +1,6 @@
 package dev.mission.exec;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,13 +12,14 @@ import dev.mission.entite.Mission;
 import dev.mission.repository.MissionRepository;
 
 @Controller
-@Profile("selectProchainesMissions")
-public class ListerProchainesMissions implements Runnable {
+@Profile("selectProchainesMissionsParTJM")
+public class ListerProchainesMissionsParTJM implements Runnable {
+
 	private MissionRepository missionRepository;
 
 	private static final Logger LOGGER = Logger.getLogger(ListerProchainesMissions.class.getName());
 
-	public ListerProchainesMissions(MissionRepository missionRepository) {
+	public ListerProchainesMissionsParTJM(MissionRepository missionRepository) {
 		super();
 		this.missionRepository = missionRepository;
 	}
@@ -25,8 +27,9 @@ public class ListerProchainesMissions implements Runnable {
 	@Override
 	public void run() {
 		LocalDate aujourdhui = LocalDate.now();
-		List<Mission> missions = missionRepository.findFuturMissions(aujourdhui);
-		LOGGER.info("Les missions a partir d'aujourd'hui : ");
+		BigDecimal TJM = new BigDecimal(120);
+		List<Mission> missions = missionRepository.findFuturMissionsParTJM(aujourdhui, TJM);
+		LOGGER.info("Les missions a partir d'aujourd'hui avec un seuil de TJ de " + TJM.toString() + " : ");
 		for (Mission mission : missions)
 			LOGGER.info(mission.toString());
 	}
